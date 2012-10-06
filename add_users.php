@@ -15,7 +15,7 @@ if (isset($_GET['error'])) {
 ?>
 <form action="register_users.php" method="POST">
 Username: <input type="text" name="username"><br>
-Password: <input type="text" name="password">
+Password: <input type="password" name="password">
 <input type="submit" value="Create!">
 </form>
 </body>
