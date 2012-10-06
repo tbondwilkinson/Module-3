@@ -22,9 +22,29 @@ $stmt->bind_result($post_timestamp, $post, $post_id);
 
 echo "<ul>\n";
 while($stmt->fetch()){
-	printf("\t<li>%s</li>\n",
+
+	printf("\t<li>%s",
 		htmlspecialchars($post)
 	);
+
+	$stmt1 = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
+
+	if(!$stmt){
+		printf("Query Prep Failed: %s\n", $mysqli->error);
+		exit;
+	}
+
+	$stmt1->bind_param('d', $post_id);
+
+	$stmt1->execute();
+
+	$stmt1->bind_result($comment_timestamp, $comment, $comment_id);
+
+	echo "\t\t<ul>";
+	while($stmt1->fetch()){
+		printf("\t<li>%s</li>\n", htmlspecialchars($comment));
+	}
+	echo "\t\t</ul></li>\n";
 }
 echo "</ul>\n";
 ?>
