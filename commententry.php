@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
