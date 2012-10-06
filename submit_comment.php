@@ -17,6 +17,7 @@ if (isset($_POST['commententry'])) {
 	$stmt->execute();
 	 
 	$stmt->close();
+	exit;
 }
 else {
 	echo "Comment entry not set";
