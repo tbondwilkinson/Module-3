@@ -9,7 +9,7 @@ if (!$_SESSION['logged_in']) {
 	exit;
 }
 
-$stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id FROM posts ORDER BY post_timestamp");
+$stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id FROM posts ORDER BY post_timestamp DESC");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
