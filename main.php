@@ -24,7 +24,7 @@ $posts = array();
 
 $i = 0;
 while($stmt->fetch()){
-	$posts[$i] = array("post" => $post, "post_id" => $post_id, "username" => $username);
+	$posts[$i] = array("post_timestamp" => $post_timestamp, "post" => $post, "post_id" => $post_id, "username" => $username);
 	$i += 1;
 }
 
@@ -33,9 +33,11 @@ foreach($posts as &$value){
 
 	printf("\t<li>%s<br><br>\tPosted by %s at %s",
 		htmlspecialchars($value["post"]), 
-		htmlspecialchars($username), 
-		htmlspecialchars($post_timestamp)
+		htmlspecialchars($value["username"]), 
+		htmlspecialchars($value["post_timestamp"])
 	);
+
+	echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a>";
 
 	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
 
