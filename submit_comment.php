@@ -12,12 +12,11 @@ if (isset($_POST['commententry'])) {
 		exit;
 	}
 
-	$stmt->bind_param('s', $_GET['post_id'], $_POST['commententry']);
+	$stmt->bind_param('ds', $_GET['post_id'], $_POST['commententry']);
 
 	$stmt->execute();
 	 
 	$stmt->close();
-	exit;
 }
 else {
 	echo "Comment entry not set";
