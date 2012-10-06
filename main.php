@@ -9,7 +9,7 @@ if (!$_SESSION['logged_in']) {
 	exit;
 }
 
-$stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id FROM posts ORDER BY post_timestamp DESC");
+$stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id, username FROM posts ORDER BY post_timestamp DESC");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -18,24 +18,24 @@ if(!$stmt){
 
 $stmt->execute();
 
-$stmt->bind_result($post_timestamp, $post, $post_id);
+$stmt->bind_result($post_timestamp, $post, $post_id, $username);
 
 $posts = array();
 
 $i = 0;
 while($stmt->fetch()){
-	$posts[$i] = array("post" => $post, "post_id" => $post_id);
+	$posts[$i] = array("post" => $post, "post_id" => $post_id, "username" => $username);
 	$i += 1;
 }
 
 echo "<ul>\n";
 foreach($posts as &$value){
 
-	printf("\t<li>%s",
-		htmlspecialchars($value["post"])
+	printf("\t<li>%s<br><br>\tPosted by %s",
+		htmlspecialchars($value["post"], $username)
 	);
 
-	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
+	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
 
 	if(!$stmt){
 		printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -46,11 +46,11 @@ foreach($posts as &$value){
 
 	$stmt->execute();
 
-	$stmt->bind_result($comment_timestamp, $comment, $comment_id);
+	$stmt->bind_result($comment_timestamp, $comment, $comment_id, $username);
 
 	echo "\t\t<ul>";
 	while($stmt->fetch()){
-		printf("\t<li>%s</li>\n", htmlspecialchars($comment));
+		printf("\t<li>%s<br><br>\tPosted by %s</li>\n", htmlspecialchars($comment), $username);
 	}
 	echo "\t\t</ul></li>\n";
 }
