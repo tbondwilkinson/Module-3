@@ -61,9 +61,10 @@ foreach($posts as &$value){
 			htmlentities($comment),
 			htmlentities($username), 
 			htmlentities($comment_timestamp));
-	}
-	if ($_SESSION['admin']) {
-		echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a>";
+		
+		if ($_SESSION['admin']) {
+			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a>";
+		}
 	}
 	echo "\t\t</ul></li>\n";
 }
