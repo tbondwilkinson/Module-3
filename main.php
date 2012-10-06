@@ -13,4 +13,9 @@ if (!$_SESSION['logged_in']) {
 </head>
 <body>
 	IT WORKS!
+	<div id="fupload-logout">
+  		<form action="logout_users.php" method="POST">
+    		<input type="submit" value="Logout">
+  		</form>
+	</div>
 </body>
