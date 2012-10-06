@@ -5,12 +5,12 @@
 <body>
 	<h2>LOGIN</h2>
 		<?php
-			if (isset($_GET['attempts'])) {
-				if (isset($_GET['username'])) {
-					echo "Invalid username: " . $_GET['username'] . "<br>";
+			if (isset($_GET['error'])) {
+				if($_GET['error'] == "nousername") {
+					echo "No such username (" . $_GET['username'] . ")<br>";
 				}
-				else {
-					echo "Invalid username<br>";
+				elseif ($_GET['error'] == "badpassword") {
+					echo "Invalid password for username (" . $_GET['username'] . ")<br>";
 				}
 			}
 			else {

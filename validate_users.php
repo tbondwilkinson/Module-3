@@ -28,9 +28,14 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		$_SESSION['admin'] = $administrator;
 		header("Location: main.php");
 		exit;
-	}else{
+	}
+	elseif ($cnt == 0) {
+		header("Location: login.php?error=nousername&username=" . $_POST['username']);
+		exit;
+	}
+	else{
 		// Login failed; redirect back to the login screen
-		header("Location: login.php?attempts=1&username=" . $_POST['username']);
+		header("Location: login.php?error=badpassword&username=" . $_POST['username']);
 		exit;
 	}
 }
