@@ -8,7 +8,7 @@ if (isset($_GET["post_id"])) {
 
 	$stmt1 = $mysqli->prepare("DELETE FROM comments WHERE post_id = ?");
 
-	if(!$stmt){
+	if(!$stmt1){
 		printf("Query Prep Failed: %s\n", $mysqli->error);
 		exit;
 	}
