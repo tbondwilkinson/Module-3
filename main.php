@@ -9,6 +9,10 @@ if (!$_SESSION['logged_in']) {
 	exit;
 }
 
+if ($_GET['error'] == "invalid_token") {
+	echo "Invalid token!<br>";
+}
+
 $stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id, username FROM posts ORDER BY post_timestamp DESC");
 
 if(!$stmt){
