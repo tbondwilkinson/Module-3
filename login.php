@@ -17,7 +17,7 @@
 				echo "<br>";
 			}
 		?>
-	<form action="validate.php" method="post">
+	<form action="validate_users.php" method="post">
 		<p>
 			<label for="username">Username</label>
 			<input type="text" name="username" id="username">
