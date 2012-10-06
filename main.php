@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require "database.php";
+
 // Take the user to the login screen if the user has yet to log in.
 if (!$_SESSION['logged_in']) {
 	header("Location: login.php");
