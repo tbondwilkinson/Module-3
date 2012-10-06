@@ -18,6 +18,9 @@ if (isset($_POST['commententry'])) {
 	 
 	$stmt->close();
 }
+else {
+	echo "Comment entry not set";
+}
 
 header("Location: main.php");
 exit;
