@@ -31,13 +31,13 @@ while($stmt->fetch()){
 echo "<ul>\n";
 foreach($posts as &$value){
 
-	printf("\t<li>%s<br><br>\tPosted by %s at %s",
+	printf("\t<li>%s<br><br>\tPosted by %s at %s\n",
 		htmlentities($value["post"]), 
 		htmlentities($value["username"]), 
 		htmlentities($value["post_timestamp"])
 	);
 
-	echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a>";
+	echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a><br>";
 	if ($_SESSION['admin']) {
 		echo "<a href=delete_post.php?post_id=" . $value["post_id"] . ">Delete</a>";
 	}
@@ -61,7 +61,7 @@ foreach($posts as &$value){
 			htmlentities($comment),
 			htmlentities($username), 
 			htmlentities($comment_timestamp));
-		
+
 		if ($_SESSION['admin']) {
 			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a>";
 		}
