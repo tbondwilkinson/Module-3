@@ -9,7 +9,7 @@ if (!$_SESSION['logged_in']) {
 	exit;
 }
 
-if ($_GET['error'] == "invalid_token") {
+if (isset($_GET['error']) and $_GET['error'] == "invalid_token") {
 	echo "Invalid token!<br>";
 }
 
