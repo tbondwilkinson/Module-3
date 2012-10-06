@@ -31,8 +31,10 @@ while($stmt->fetch()){
 echo "<ul>\n";
 foreach($posts as &$value){
 
-	printf("\t<li>%s<br><br>\tPosted by %s",
-		htmlspecialchars($value["post"]), $username
+	printf("\t<li>%s<br><br>\tPosted by %s at %s",
+		htmlspecialchars($value["post"]), 
+		htmlspecialchars($username), 
+		htmlspecialchars($post_timestamp)
 	);
 
 	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
@@ -50,7 +52,10 @@ foreach($posts as &$value){
 
 	echo "\t\t<ul>";
 	while($stmt->fetch()){
-		printf("\t<li>%s<br><br>\tPosted by %s</li>\n", htmlspecialchars($comment), $username);
+		printf("\t<li>%s<br><br>\tPosted by %s at </li>\n", 
+			htmlspecialchars($comment),
+			htmlspecialchars($username), 
+			htmlspecialchars($comment_timestamp));
 	}
 	echo "\t\t</ul></li>\n";
 }
