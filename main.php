@@ -12,7 +12,7 @@ if (!$_SESSION['logged_in']) {
 	<title>Welcome!</title>
 </head>
 <body>
-	IT WORKS!
+	IT WORKS!  AND IT IS COOL!
 	<div id="fupload-logout">
   		<form action="logout_users.php" method="POST">
     		<input type="submit" value="Logout">
