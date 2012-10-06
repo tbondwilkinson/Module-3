@@ -32,7 +32,7 @@ echo "<ul>\n";
 foreach($posts as &$value){
 
 	printf("\t<li>%s<br><br>\tPosted by %s",
-		htmlspecialchars($value["post"], $username)
+		htmlspecialchars($value["post"]), $username
 	);
 
 	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
