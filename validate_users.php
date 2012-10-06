@@ -23,6 +23,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		// Login succeeded!
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user_id;
+		$_SESSION['username'] = $user;
 		$_SESSION['token'] = md5(uniqid(rand(), true));
 		$_SESSION['admin'] = $administrator;
 		header("Location: main.php");
