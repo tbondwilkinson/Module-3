@@ -28,6 +28,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		// Login failed; redirect back to the login screen
 		header("Location: login.php?attempts=1&username=" . $_POST['username']);
 	}
+}
 
 header("Location: login.php?attempts=1");
 exit;
