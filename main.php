@@ -52,7 +52,7 @@ foreach($posts as &$value){
 
 	echo "\t\t<ul>";
 	while($stmt->fetch()){
-		printf("\t<li>%s<br><br>\tPosted by %s at </li>\n", 
+		printf("\t<li>%s<br><br>\tPosted by %s at %s</li>\n", 
 			htmlspecialchars($comment),
 			htmlspecialchars($username), 
 			htmlspecialchars($comment_timestamp));
