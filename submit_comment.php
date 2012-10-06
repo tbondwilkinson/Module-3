@@ -5,7 +5,9 @@ require "database.php";
 
 // Verify the user's token.
 if ($_SESSION['token'] !== $_POST['token']) {
-	header("Location: main.php?error=invalid_token");
+	echo $_SESSION['token'];
+	echo $_POST['token'];
+	//header("Location: main.php?error=invalid_token");
 	exit;
 } 
 
