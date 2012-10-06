@@ -31,7 +31,7 @@ while($stmt->fetch()){
 echo "<ul>\n";
 foreach($posts as &$value){
 
-	printf("\t<li>%s<br><br>\tPosted by %s at %s\n",
+	printf("\t<li>%s<br><br>\tPosted by %s at %s<br>",
 		htmlentities($value["post"]), 
 		htmlentities($value["username"]), 
 		htmlentities($value["post_timestamp"])
