@@ -18,6 +18,8 @@ if (isset($_GET["post_id"])) {
 	 
 	$stmt->close();
 
+	exit;
+
 	$stmt = $mysqli->prepare("DELETE FROM comments WHERE post_id = ?");
 
 	if(!$stmt){
