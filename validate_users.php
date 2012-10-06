@@ -25,9 +25,11 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		$_SESSION['user_id'] = $user_id;
 		$_SESSION['token'] = md5(uniqid(rand(), true));
 		header("Location: main.php");
+		exit;
 	}else{
 		// Login failed; redirect back to the login screen
 		header("Location: login.php?attempts=1&username=" . $_POST['username']);
+		exit;
 	}
 }
 
