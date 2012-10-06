@@ -14,7 +14,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('s', $usrname);
+$stmt->bind_param('s', $username);
 
 $stmt->execute();
 
