@@ -29,7 +29,7 @@ while($stmt->fetch()){
 
 	$stmt1 = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
 
-	if(!$stmt){
+	if(!$stmt1){
 		printf("Query Prep Failed: %s\n", $mysqli->error);
 		exit;
 	}
