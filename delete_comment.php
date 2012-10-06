@@ -13,7 +13,7 @@ if (isset($_GET["comment_id"])) {
 		exit;
 	}
 
-	$stmt->bind_param('s', $_GET["pot_id"]);
+	$stmt->bind_param('s', $_GET["comment_id"]);
 
 	$stmt->execute();
 	 
