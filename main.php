@@ -32,12 +32,15 @@ echo "<ul>\n";
 foreach($posts as &$value){
 
 	printf("\t<li>%s<br><br>\tPosted by %s at %s",
-		htmlspecialchars($value["post"]), 
-		htmlspecialchars($value["username"]), 
-		htmlspecialchars($value["post_timestamp"])
+		htmlentities($value["post"]), 
+		htmlentities($value["username"]), 
+		htmlentities($value["post_timestamp"])
 	);
 
 	echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a>";
+	if ($_SESSION['admin']) {
+		echo "<a href=delete_post.php?post_id=" . $value["post_id"] . ">Delete</a>";
+	}
 
 	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
 
@@ -55,9 +58,12 @@ foreach($posts as &$value){
 	echo "\t\t<ul>";
 	while($stmt->fetch()){
 		printf("\t<li>%s<br><br>\tPosted by %s at %s</li>\n", 
-			htmlspecialchars($comment),
-			htmlspecialchars($username), 
-			htmlspecialchars($comment_timestamp));
+			htmlentities($comment),
+			htmlentities($username), 
+			htmlentities($comment_timestamp));
+	}
+	if ($_SESSION['admin']) {
+		echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a>";
 	}
 	echo "\t\t</ul></li>\n";
 }
@@ -70,7 +76,6 @@ echo "</ul>\n";
 <body>
 	IT WORKS!  AND IT IS COOL!<br>
 	<a href="storyentry.php">Story Entry</a><br>
-	<a href="commententry.php?post_id=1">Comment Entry</a><br>
 	<div id="fupload-logout">
   		<form action="logout_users.php" method="POST">
     		<input type="submit" value="Logout">

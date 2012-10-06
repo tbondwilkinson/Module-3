@@ -6,7 +6,7 @@ require "database.php";
 // Check to see whether the username exists.
 if (isset($_POST['username']) and isset($_POST['password'])) {
 	// Use a prepared statement
-	$stmt = $mysqli->prepare("SELECT COUNT(*), id, crypted_password FROM users WHERE username=?");
+	$stmt = $mysqli->prepare("SELECT COUNT(*), id, crypted_password, administrator FROM users WHERE username=?");
 
 	// Bind the parameter
 	$user = $_POST['username'];
@@ -14,7 +14,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 	$stmt->execute();
 	 
 	// Bind the results
-	$stmt->bind_result($cnt, $user_id, $pwd_hash);
+	$stmt->bind_result($cnt, $user_id, $pwd_hash, $administrator);
 	$stmt->fetch();
 	 
 	$pwd_guess = $_POST['password'];
@@ -24,6 +24,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user_id;
 		$_SESSION['token'] = md5(uniqid(rand(), true));
+		$_SESSION['admin'] = $administrator;
 		header("Location: main.php");
 		exit;
 	}else{
