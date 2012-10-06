@@ -6,6 +6,25 @@ if (!$_SESSION['logged_in']) {
 	header("Location: login.php");
 	exit;
 }
+
+$stmt = $mysqli->prepare("SELECT post_timestamp, post, post_id FROM posts ORDER BY post_timestamp");
+
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
+
+$stmt->execute();
+
+$stmt->bind_result($post_timestamp, $post, $post_id);
+
+echo "<ul>\n";
+while($stmt->fetch()){
+	printf("\t<li>%s</li>\n",
+		htmlspecialchars($post)
+	);
+}
+echo "</ul>\n";
 ?>
 <!DOCTYPE html>
 <head>

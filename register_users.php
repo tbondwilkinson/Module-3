@@ -7,7 +7,7 @@ require "database.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$stmt = $mysqli->prepare("select id, crypted_password from users where username = ?");
+$stmt = $mysqli->prepare("SELECT id, crypted_password FROM users WHERE username = ?");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
