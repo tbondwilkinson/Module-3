@@ -18,7 +18,7 @@ if (isset($_POST['commententry'])) {
 		exit;
 	}
 
-	$stmt->bind_param('ds', $_GET['post_id'], $_POST['commententry'], $_SESSION['username']);
+	$stmt->bind_param('dss', $_GET['post_id'], $_POST['commententry'], $_SESSION['username']);
 
 	$stmt->execute();
 	 
@@ -28,6 +28,6 @@ else {
 	echo "Comment entry not set";
 }
 
-//header("Location: main.php");
+header("Location: main.php");
 exit;
 ?>

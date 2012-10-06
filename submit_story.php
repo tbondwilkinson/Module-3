@@ -18,7 +18,7 @@ if (isset($_POST['storyentry'])) {
 		exit;
 	}
 
-	$stmt->bind_param('s', $_POST['storyentry'], $_SESSION['username']);
+	$stmt->bind_param('ss', $_POST['storyentry'], $_SESSION['username']);
 
 	$stmt->execute();
 	 
