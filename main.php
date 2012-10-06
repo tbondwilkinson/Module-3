@@ -35,7 +35,7 @@ while($stmt->fetch()){
 echo "<ul>\n";
 foreach($posts as &$value){
 
-	printf("\t<li>%s<br><br>\tPosted by %s at %s<br>",
+	printf("\t<li><pre>%s</pre><br><br>\tPosted by %s at %s<br>",
 		htmlentities($value["post"]), 
 		htmlentities($value["username"]), 
 		htmlentities($value["post_timestamp"])
@@ -61,7 +61,7 @@ foreach($posts as &$value){
 
 	echo "\t\t<ul>";
 	while($stmt->fetch()){
-		printf("\t<li>%s<br><br>\tPosted by %s at %s</li>\n", 
+		printf("\t<li><pre>%s</pre><br><br>\tPosted by %s at %s</li>\n", 
 			htmlentities($comment),
 			htmlentities($username), 
 			htmlentities($comment_timestamp));
