@@ -19,7 +19,7 @@ if (isset($_GET["comment_id"])) {
 	 
 	$stmt->close();
 
-	header("Location: main.php");
+	//header("Location: main.php");
 
 	exit;
 }

@@ -31,7 +31,7 @@ if (isset($_GET["post_id"])) {
 	 
 	$stmt->close();
 
-	header("Location: main.php");
+	//header("Location: main.php");
 
 	exit;
 }
