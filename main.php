@@ -6,7 +6,7 @@ session_start();
 
 // Take the user to the login screen if the user has yet to log in.
 if (!$_SESSION['logged_in']) {
-	echo "<a href='login.php'>Login!</a>";
+	echo "<a href='login.php'>Login!</a><br>";
 }
 
 if (isset($_GET['error']) and $_GET['error'] == "invalid_token") {
