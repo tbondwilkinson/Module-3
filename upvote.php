@@ -19,10 +19,6 @@ $stmt->fetch();
 
 $stmt->close();
 
-echo $count;
-
-exit;
-
 if($count == 0) {
 
 	$stmt = $mysqli->prepare("UPDATE posts SET votes=? WHERE post_id = ?");
