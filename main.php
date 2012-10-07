@@ -26,7 +26,7 @@ $stmt->bind_result($post_timestamp, $post, $post_id, $username, $votes);
 
 while($stmt->fetch()){
 	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . htmlentities(trim_text($post, 50)) . "</a><br>";
-	echo "By " . htmlentities($username) . "\t\t\t" . "<a href='upvote.php'>&uarr</a>" . $votes . "<br><br>";
+	echo "By " . htmlentities($username) . "\t\t\t" . "<a href='upvote.php'>&uarr;</a>" . $votes . "<br><br>";
 }
 ?>
 <!DOCTYPE html>
