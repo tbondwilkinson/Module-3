@@ -83,6 +83,7 @@ foreach($posts as &$value){
 echo "</ul>\n";
 ?>
 <!DOCTYPE html>
+<? if ($_SESSION['logged_in']) { ?>
 <head>
 	<title>Welcome!</title>
 </head>
@@ -94,4 +95,5 @@ echo "</ul>\n";
     		<input type="submit" value="Logout">
   		</form>
 	</div>
+<? } ?>
 </body>
