@@ -26,7 +26,7 @@ if (isset($_GET["post_id"])) {
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css">
-<title>Add a new comment!</title>
+<title>Edit a post!</title>
 </head>
 <body>
 <form action="edit_post_submit.php" method="POST">
