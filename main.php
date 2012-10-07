@@ -23,7 +23,8 @@ $stmt->execute();
 $stmt->bind_result($post_timestamp, $post, $post_id, $username);
 
 while($stmt->fetch()){
-	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . $post . "</a>";
+	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . $post . "</a><br>";
+	echo "By " . $username . "<br><br>";
 }
 ?>
 <!DOCTYPE html>
