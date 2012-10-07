@@ -13,7 +13,7 @@ if (isset($_GET['error']) and $_GET['error'] == "invalid_token") {
 	echo "Invalid token!<br>";
 }
 
-$stmt = $mysqli->prepare("SELECT 30 FROM (SELECT post_timestamp, post, post_id, username, votes FROM posts ORDER BY post_timestamp DESC) ORDER BY votes as vote_table");
+$stmt = $mysqli->prepare("SELECT * FROM (SELECT post_timestamp, post, post_id, username, votes FROM posts ORDER BY post_timestamp DESC) WHERE ROWNUM < 30 ORDER BY votes DESC");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
