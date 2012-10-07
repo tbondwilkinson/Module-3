@@ -29,7 +29,7 @@ if($_SESSION['logged_in']) {
 	if ($_SESSION['admin'] or $username == $_SESSION['username']) {
 		echo "<a href=delete_post.php?post_id=" . $post_id . ">Delete</a><br>";
 	}
-	if ($value['username'] == $_SESSION['username']) {
+	if ($username == $_SESSION['username']) {
 		echo "<a href=edit_post.php?post_id=" . $post_id . ">Edit</a>";
 	}
 }
