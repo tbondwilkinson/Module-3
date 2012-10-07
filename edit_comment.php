@@ -21,6 +21,7 @@ if (isset($_GET["comment_id"])) {
 	$stmt->fetch();
 	 
 	$stmt->close();
+}
 ?>
 <!DOCTYPE html>
 <head>
