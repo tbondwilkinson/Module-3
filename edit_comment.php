@@ -32,7 +32,7 @@ if (isset($_GET["comment_id"])) {
 <form action="submit_edit_comment.php" method="POST">
 <textarea rows="10" cols="50" name="comment" id="comment">
 <?=$comment;?>
-</textarea>
+</textarea><br>
 <input type="hidden" name="token" value="<?=$_SESSION['token'];?>" />
 <input type="hidden" name="comment_id" id="comment_id" value="<?=$_GET['comment_id'];?>" />
 <input type="submit" value="Submit!">

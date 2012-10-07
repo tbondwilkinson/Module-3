@@ -32,7 +32,7 @@ if (isset($_GET["post_id"])) {
 <form action="edit_post_submit.php" method="POST">
 <textarea rows="10" cols="50" name="post" id="post">
 <?=$post;?>
-</textarea>
+</textarea><br>
 <input type="hidden" name="token" value="<?=$_SESSION['token'];?>" />
 <input type="hidden" name="post_id" value="<?=$_GET['post_id'];?>" />
 <input type="submit" value="Submit!">
