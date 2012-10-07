@@ -4,9 +4,6 @@ session_start();
 
 $stmt = $mysqli->prepare("SELECT COUNT(*) FROM votes WHERE post_id = ? and username = ?");
 
-echo $_GET['post_id'];
-echo $_SESSION['username'];
-
 $stmt->bind_param('ss', $_GET['post_id'], $_SESSION['username']);
 
 if(!$stmt){
@@ -15,6 +12,8 @@ if(!$stmt){
 }
 
 $stmt->bind_result($count);
+
+$stmt->fetch();
 
 $stmt->execute();
 
