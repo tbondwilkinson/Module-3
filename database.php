@@ -1,5 +1,3 @@
-<?php phpinfo(); ?>
-
 <?php
 $mysqli = new mysqli('localhost', 'php', 'php', 'module3');
  
