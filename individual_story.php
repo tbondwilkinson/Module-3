@@ -18,7 +18,7 @@ $stmt->bind_result($post_timestamp, $post, $post_id, $username);
 
 $stmt->fetch();
 
-printf("\t<li><pre>%s</pre>\tPosted by %s at %s<br>",
+printf("<pre>%s</pre>Posted by %s at %s<br>",
 	htmlentities($post), 
 	htmlentities($username), 
 	htmlentities($post_timestamp)
@@ -49,9 +49,9 @@ $stmt->execute();
 
 $stmt->bind_result($comment_timestamp, $comment, $comment_id, $username);
 
-echo "\t\t<ul>";
+echo "<ul>";
 while($stmt->fetch()){
-	printf("\t<li><pre>%s</pre>\tPosted by %s at %s</li>\n", 
+	printf("<li><pre>%s</pre>Posted by %s at %s</li>\n", 
 		htmlentities($comment),
 		htmlentities($username), 
 		htmlentities($comment_timestamp));
@@ -65,9 +65,7 @@ while($stmt->fetch()){
 		}
 	}
 }
-echo "\t\t</ul></li>\n";
-
-echo "</ul>\n";
+echo "</ul></li>\n";
 
 $stmt->close();
 ?>
