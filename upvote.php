@@ -11,11 +11,11 @@ if(!$stmt){
 	exit;
 }
 
+$stmt->execute();
+
 $stmt->bind_result($count);
 
 $stmt->fetch();
-
-$stmt->execute();
 
 $stmt->close();
 
