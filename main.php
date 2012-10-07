@@ -1,7 +1,9 @@
 <?php
+include "abbreviate.php";
+require "database.php";
+
 session_start();
 
-require "database.php";
 // Take the user to the login screen if the user has yet to log in.
 if (!$_SESSION['logged_in']) {
 	echo "<a href='login.php'>Login!</a>";
@@ -23,7 +25,7 @@ $stmt->execute();
 $stmt->bind_result($post_timestamp, $post, $post_id, $username);
 
 while($stmt->fetch()){
-	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . $post . "</a><br>";
+	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . abbreviate($post, 50) . "</a><br>";
 	echo "By " . $username . "<br><br>";
 }
 ?>
