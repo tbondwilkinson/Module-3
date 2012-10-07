@@ -11,7 +11,7 @@ if ($_SESSION['token'] !== $_POST['token']) {
 
 // Check to see whether the username exists.
 if (isset($_POST['commententry'])) {
-	$stmt = $mysqli->prepare("insert into comments (post_id, comment, username) values (?, ?, ?)");
+	$stmt = $mysqli->prepare("INSERT INTO comments (post_id, comment, username) VALUES (?, ?, ?)");
 
 	if(!$stmt){
 		printf("Query Prep Failed: %s\n", $mysqli->error);
