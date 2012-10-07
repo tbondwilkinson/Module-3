@@ -2,11 +2,9 @@
 session_start();
 
 require "database.php";
-
 // Take the user to the login screen if the user has yet to log in.
 if (!$_SESSION['logged_in']) {
-	header("Location: login.php");
-	exit;
+	echo "<a href='login.php'>Login!</a>";
 }
 
 if (isset($_GET['error']) and $_GET['error'] == "invalid_token") {
@@ -41,12 +39,14 @@ foreach($posts as &$value){
 		htmlentities($value["post_timestamp"])
 	);
 
-	echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a><br>";
-	if ($_SESSION['admin'] or $value['username'] == $_SESSION['username']) {
-		echo "<a href=delete_post.php?post_id=" . $value["post_id"] . ">Delete</a><br>";
-	}
-	if ($value['username'] == $_SESSION['username']) {
-		echo "<a href=edit_post.php?post_id=" . $value["post_id"] . ">Edit</a>";
+	if($_SESSION['logged_in']) {
+		echo "<a href=commententry.php?post_id=" . $value["post_id"] . ">Add a comment!</a><br>";
+		if ($_SESSION['admin'] or $value['username'] == $_SESSION['username']) {
+			echo "<a href=delete_post.php?post_id=" . $value["post_id"] . ">Delete</a><br>";
+		}
+		if ($value['username'] == $_SESSION['username']) {
+			echo "<a href=edit_post.php?post_id=" . $value["post_id"] . ">Edit</a>";
+		}
 	}
 
 	$stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
@@ -69,11 +69,13 @@ foreach($posts as &$value){
 			htmlentities($username), 
 			htmlentities($comment_timestamp));
 
-		if ($_SESSION['admin'] or $username == $_SESSION['username']) {
-			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a><br>";
-		}
-		if ($username == $_SESSION['username']) {
-			echo "<a href=edit_comment.php?comment_id=" . $comment_id . ">Edit</a>";
+		if ($_SESSION['logged_in']) {
+			if ($_SESSION['admin'] or $username == $_SESSION['username']) {
+				echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a><br>";
+			}
+			if ($username == $_SESSION['username']) {
+				echo "<a href=edit_comment.php?comment_id=" . $comment_id . ">Edit</a>";
+			}
 		}
 	}
 	echo "\t\t</ul></li>\n";
