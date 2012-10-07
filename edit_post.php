@@ -21,22 +21,22 @@ if (isset($_GET["post_id"])) {
 	$stmt->fetch();
 	 
 	$stmt->close();
-
-	$stmt = $mysqli->prepare("UPDATE posts SET post=? WHERE post_id = ?");
-
-	if(!$stmt){
-		printf("Query Prep Failed: %s\n", $mysqli->error);
-		exit;
-	}
-
-	$stmt->bind_param('ss', $post, $_GET["post_id"]);
-
-	$stmt->execute();
-	 
-	$stmt->close();
-
-	header("Location: main.php");
-
-	exit;
 }
 ?>
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>Add a new comment!</title>
+</head>
+<body>
+<form action="edit_comment_submit.php>" method="POST">
+<textarea rows="10" cols="50" name="post" id="post">
+<?=$post;?>
+</textarea>
+<input type="hidden" name="token" value="<?=$_SESSION['token'];?>" />
+<input type="hidden" name="post_id" value="<?=$_GET['post_id'];?>" />
+<input type="submit" value="Submit!">
+</form>
+</body>
+</head>
+</html>

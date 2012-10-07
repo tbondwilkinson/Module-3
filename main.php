@@ -70,7 +70,7 @@ foreach($posts as &$value){
 			htmlentities($comment_timestamp));
 
 		if ($_SESSION['admin'] or $value['username'] == $_SESSION['username']) {
-			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a>";
+			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a><br>";
 		}
 		if ($value['username'] == $_SESSION['username']) {
 			echo "<a href=edit_comment.php?comment_id=" . $comment_id . ">Edit</a>";
