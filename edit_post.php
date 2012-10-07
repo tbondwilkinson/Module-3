@@ -29,7 +29,7 @@ if (isset($_GET["post_id"])) {
 <title>Add a new comment!</title>
 </head>
 <body>
-<form action="edit_comment_submit.php>" method="POST">
+<form action="edit_post_submit.php" method="POST">
 <textarea rows="10" cols="50" name="post" id="post">
 <?=$post;?>
 </textarea>
