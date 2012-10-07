@@ -1,7 +1,6 @@
 <?php
-session_start();
-
 require "database.php";
+session_start();
 
 // Verify the user's token.
 if ($_SESSION['token'] !== $_POST['token']) {
@@ -19,9 +18,7 @@ if (isset($_POST['storyentry'])) {
 	}
 
 	$stmt->bind_param('ss', $_POST['storyentry'], $_SESSION['username']);
-
 	$stmt->execute();
-	 
 	$stmt->close();
 }
 

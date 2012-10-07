@@ -1,5 +1,7 @@
 <?php
 /**
+ * Drawn from http://www.ebrueggeman.com/blog/abbreviate-text-without-cutting-words-in-half
+ *
  * trims text to a space then adds ellipses if desired
  * @param string $input text to trim
  * @param int $length in characters to trim to

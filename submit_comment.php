@@ -1,7 +1,6 @@
 <?php
-session_start();
-
 require "database.php";
+session_start();
 
 // Verify the user's token.
 if ($_SESSION['token'] !== $_POST['token']) {
@@ -10,7 +9,7 @@ if ($_SESSION['token'] !== $_POST['token']) {
 } 
 
 // Check to see whether the username exists.
-if (isset($_POST['commententry'])) {
+if (isset($_POST['commententry']) and isset($_GET['post_id'])) {
 	$stmt = $mysqli->prepare("INSERT INTO comments (post_id, comment, username) VALUES (?, ?, ?)");
 
 	if(!$stmt){
@@ -19,13 +18,12 @@ if (isset($_POST['commententry'])) {
 	}
 
 	$stmt->bind_param('dss', $_GET['post_id'], $_POST['commententry'], $_SESSION['username']);
-
 	$stmt->execute();
-	 
 	$stmt->close();
 }
 else {
-	echo "Comment entry not set";
+	header("Location: main.php");
+	exit;
 }
 
 header("Location: individual_story.php?post_id=" . $_GET['post_id']);

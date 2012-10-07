@@ -1,12 +1,17 @@
 <?php
-
+require "database.php";
 session_start();
 
-require "database.php";
+if (isset($_POST['username']) and isset($_POST['password'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+}
+else {
+	header("Location: add_users.php");
+	exit;
+}
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-
+// Check to see if we already have a username
 $stmt = $mysqli->prepare("SELECT id, crypted_password FROM users WHERE username = ?");
 
 if(!$stmt){
@@ -15,9 +20,7 @@ if(!$stmt){
 }
 
 $stmt->bind_param('s', $username);
-
 $stmt->execute();
-
 $stmt->bind_result($id, $crypted_password);
 
 if ($stmt->fetch()) {
@@ -25,7 +28,10 @@ if ($stmt->fetch()) {
 	exit;
 }
 
-$stmt = $mysqli->prepare("insert into users (username, crypted_password) values (?, ?)");
+$stmt->close();
+
+// Insert a new username
+$stmt = $mysqli->prepare("INSERT INTO users (username, crypted_password) VALUES (?, ?)");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -33,13 +39,8 @@ if(!$stmt){
 }
 
 $stmt->bind_param('ss', $username, crypt($password));
-
 $stmt->execute();
- 
 $stmt->close();
-
 header("Location: main.php");
-
 exit;
-
 ?>

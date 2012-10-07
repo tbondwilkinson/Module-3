@@ -1,12 +1,16 @@
 <?php
-session_start();
-
 require "database.php";
+session_start();
 
 // Check to see whether the username exists.
 if (isset($_POST['username']) and isset($_POST['password'])) {
 	// Use a prepared statement
 	$stmt = $mysqli->prepare("SELECT COUNT(*), id, crypted_password, administrator FROM users WHERE username=?");
+
+	if(!$stmt){
+		printf("Query Prep Failed: %s\n", $mysqli->error);
+		exit;
+	}
 
 	// Bind the parameter
 	$user = $_POST['username'];

@@ -1,8 +1,8 @@
 <?php
+require "database.php";
 session_start();
 
-require "database.php";
-
+// Get the post text so we can display it in the edit box.
 if (isset($_GET["post_id"])) {
 
 	$stmt = $mysqli->prepare("SELECT post FROM posts WHERE post_id = ?");
@@ -13,13 +13,14 @@ if (isset($_GET["post_id"])) {
 	}
 
 	$stmt->bind_param('s', $_GET["post_id"]);
-
 	$stmt->execute();
-
 	$stmt->bind_result($post);
 	$stmt->fetch();
-	 
 	$stmt->close();
+}
+else {
+	header("Location: main.php");
+	exit;
 }
 ?>
 <!DOCTYPE html>

@@ -1,10 +1,9 @@
 <?php
+require "database.php";
 session_start();
 
-require "database.php";
-
 if (isset($_GET["comment_id"])) {
-
+	// Fetch the comment text so that it shows up in the editing box.
 	$stmt = $mysqli->prepare("SELECT comment FROM comments WHERE comment_id = ?");
 
 	if(!$stmt){
@@ -13,14 +12,14 @@ if (isset($_GET["comment_id"])) {
 	}
 
 	$stmt->bind_param('s', $_GET["comment_id"]);
-
 	$stmt->execute();
-
 	$stmt->bind_result($comment);
-
 	$stmt->fetch();
-	 
 	$stmt->close();
+}
+else {
+	header("Location: main.php");
+	exit;
 }
 ?>
 <!DOCTYPE html>
