@@ -21,7 +21,10 @@ if($count == 0) {
 
 	$stmt = $mysqli->prepare("UPDATE posts SET votes=? WHERE post_id = ?");
 
-	$stmt->bind_param('ss', $_GET['votes'] + 1, $_GET['post_id']);
+	$vote_num = $_GET['votes'];
+	$vote_num += 1;
+
+	$stmt->bind_param('ss', $vote_num, $_GET['post_id']);
 
 	if(!$stmt){
 		printf("Query Prep Failed: %s\n", $mysqli->error);
