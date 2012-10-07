@@ -72,7 +72,7 @@ foreach($posts as &$value){
 		if ($_SESSION['admin'] or $value['username'] == $_SESSION['username']) {
 			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a><br>";
 		}
-		if ($value['username'] == $_SESSION['username']) {
+		if ($username == $_SESSION['username']) {
 			echo "<a href=edit_comment.php?comment_id=" . $comment_id . ">Edit</a>";
 		}
 	}
