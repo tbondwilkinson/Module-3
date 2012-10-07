@@ -34,6 +34,8 @@ if($_SESSION['logged_in']) {
 	}
 }
 
+$stmt->close();
+
 $stmt = $mysqli->prepare("SELECT comment_timestamp, comment, comment_id, username FROM comments WHERE post_id = ? ORDER BY comment_timestamp DESC");
 
 if(!$stmt){
@@ -66,5 +68,7 @@ while($stmt->fetch()){
 echo "\t\t</ul></li>\n";
 
 echo "</ul>\n";
+
+$stmt->close();
 ?>
 <a href="main.php">Back to main board</a>
