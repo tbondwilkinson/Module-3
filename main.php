@@ -24,8 +24,10 @@ $stmt->execute();
 
 $stmt->bind_result($post_timestamp, $post, $post_id, $username);
 
+$width = 50;
+
 while($stmt->fetch()){
-	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . abbreviate($post, 50) . "</a><br>";
+	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . abbreviate($post, $width) . "</a><br>";
 	echo "By " . $username . "<br><br>";
 }
 ?>
