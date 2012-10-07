@@ -58,10 +58,10 @@ while($stmt->fetch()){
 
 	if ($_SESSION['logged_in']) {
 		if ($_SESSION['admin'] or $username == $_SESSION['username']) {
-			echo "<a href=delete_comment.php?comment_id=" . $comment_id . ">Delete</a><br>";
+			echo "<a href=delete_comment.php?comment_id=" . $comment_id . "&post_id=" . $post_id . ">Delete</a><br>";
 		}
 		if ($username == $_SESSION['username']) {
-			echo "<a href=edit_comment.php?comment_id=" . $comment_id . ">Edit</a>";
+			echo "<a href=edit_comment.php?comment_id=" . $comment_id . "&post_id=" . $post_id . ">Edit</a>";
 		}
 	}
 }

@@ -35,6 +35,7 @@ if (isset($_GET["comment_id"])) {
 </textarea><br>
 <input type="hidden" name="token" value="<?=$_SESSION['token'];?>" />
 <input type="hidden" name="comment_id" id="comment_id" value="<?=$_GET['comment_id'];?>" />
+<input type="hidden" name="post_id" id="post_id" value="<?=$_GET['post_id'];?>" />
 <input type="submit" value="Submit!">
 </form>
 </body>

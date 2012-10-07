@@ -22,6 +22,6 @@ $stmt->execute();
  
 $stmt->close();
 
-header("Location: main.php");
+header("Location: individual_story.php?post_id=" . $_GET['post_id']);
 exit;
 ?>
