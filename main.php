@@ -44,7 +44,12 @@ $stmt->bind_result($post_timestamp, $post, $post_id, $username, $votes);
 // Display the post, trimmed to around 50 characters.
 while($stmt->fetch()){
 	echo "<a href='individual_story.php?post_id=" . $post_id . "'>" . htmlentities(trim_text($post, 50)) . "</a><br>";
-	echo "By " . htmlentities($username) . "<br><a href='upvote.php?votes=" . $votes . "&post_id=" . $post_id . "'>&uarr;</a>" . $votes . "<br><br>";
+  	echo "By " . htmlentities($username) . "<br>";
+  	if ($_SESSION['logged_in']) {
+    	echo  "<a href='upvote.php?votes=" . $votes . "&post_id=" . $post_id . "'>&uarr;</a>";
+  	}
+  	echo $votes;
+  	echo "<br><br>";
 }
 $stmt->close();
 ?>
